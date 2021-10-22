@@ -1,2 +1,2 @@
 
-var app = angular.module('libraryApp', ['bookListApp']);
+var app = angular.module('libraryApp', ['bookListApp', 'bookDetailsApp','ngRoute']);
