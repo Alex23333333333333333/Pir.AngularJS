@@ -1,0 +1,24 @@
+<img ng-src="{{$ctrl.book.imgUrl}}" class="book" />
+
+
+
+<h1>{{$ctrl.book.name}}</h1>
+
+<p>{{$ctrl.book.writer}}</p>
+
+<div class ="book-thumbs">
+  <p ng-if="$ctrl.rightToEdit"><button type="button" id="Edit" class="btn btn-success">Edit</button></p>
+  
+  <p ng-if="$ctrl.book.available &&  $ctrl.userIsAutorized"><button type="button" id="Reserve" class="btn btn-primary">Reserve</button></p>
+  <p ng-if="$ctrl.book.available && !$ctrl.userIsAutorized"><a href="#!/registration"><button type="button" id="Log in" class="btn btn-primary">Log in to reserve</button></a></p>
+</div>
+
+<ul class="specs">
+    <dl>
+      <dt>Published</dt>
+      <dd>{{$ctrl.book.publisher}}</dd> 
+      <dd>{{$ctrl.book.date | date}}</dd> 
+      <dt>Available</dt>
+      <dd>{{$ctrl.book.Available}}</dd>
+    </dl>
+</ul>

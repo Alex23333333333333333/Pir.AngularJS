@@ -9,6 +9,8 @@ angular.
         }).
         when('/books/:bookId', {
           template: '<book-details></book-details>'
+        }). when('/registration', {
+          template: '<registration></registration>'
         }).
         otherwise('/books');
     }

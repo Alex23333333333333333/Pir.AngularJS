@@ -1,29 +1,35 @@
 [
     {
-        "id": "1",
-        "name": "A",
-        "Date": "2014.03.08",
-        "Publisher": "Publisher",
+        "id": "3",
+        "name": "S",
+        "date": "2017.03.08",
+        "publisher": "Publisher",
         "Writer": "Writer1",
-        "imgUrl":"img/book.jpg"
-
-    },
-    {
-        "id": "2",
-        "name": "F",
-        "Date": "2011.03.08",
-        "Publisher": "Publisher",
-        "Writer": "Writer1",
-        "imgUrl":"img/book.jpg"
+        "imgUrl":"img/book.jpg",
+        "available":"true",
+        "addedBy": "1"
 
     },
     {
         "id": "3",
         "name": "S",
-        "Date": "2017.03.08",
-        "Publisher": "Publisher",
+        "date": "2017.03.08",
+        "publisher": "Publisher",
         "Writer": "Writer1",
-        "imgUrl":"img/book.jpg"
+        "imgUrl":"img/book.jpg",
+        "available":"true",
+        "addedBy": "1"
+
+    },
+    {
+        "id": "3",
+        "name": "S",
+        "date": "2017.03.08",
+        "publisher": "Publisher",
+        "Writer": "Writer1",
+        "imgUrl":"img/book.jpg",
+        "available":"true",
+        "addedBy": "1"
 
     }
   ]

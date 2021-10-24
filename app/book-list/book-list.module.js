@@ -1,1 +1,1 @@
-angular.module('bookListApp', []);
+angular.module('bookListApp',['core.book']);

@@ -1,3 +1,3 @@
 angular.module('bookDetailsApp', [
-    'ngRoute'
+    'ngRoute', 'core.book'
   ]);
