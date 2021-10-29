@@ -11,6 +11,8 @@
   
   <p ng-if="$ctrl.book.available &&  $ctrl.userIsAutorized"><button type="button" id="Reserve" class="btn btn-primary">Reserve</button></p>
   <p ng-if="$ctrl.book.available && !$ctrl.userIsAutorized"><a href="#!/registration"><button type="button" id="Log in" class="btn btn-primary">Log in to reserve</button></a></p>
+  <p ng-if="!$ctrl.book.available">Reserved</p>
+  <p ng-if="$ctrl.rightToEdit"><a href="#!/registration"><button type="button" id="Edit" class="btn btn-primary">Edit</button></a></p>
 </div>
 
 <ul class="specs">

@@ -4,19 +4,26 @@
      </div>
       <div class="panel-body">
               <div class="form-group">
-                <input class="form-control" placeholder="name" name="name" type="text">
+                <input class="form-control" ng-model = "name" placeholder="name" name="name" type="text">
             </div>
             <div class="form-group">
-                <input class="form-control" placeholder="Adress" name="adress" type="text">
+                <input class="form-control"  ng-model = "adress" placeholder="adress" name="adress" type="text">
             </div>
             <div class="form-group">
-                <input class="form-control" name="date" type="date">
+                <input class="form-control" name="date"  ng-model = "birthday"   type="date">
             </div>
             <div class="form-group">
-                <input class="form-control" name="phone" type="text">
+                <input class="form-control" name="phone"  ng-model = "phone"  type="text">
             </div>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login" onclick="">
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Registrate" ng-click="$ctrl.registrate()">
     </div>
+    <div class="panel-body">
+        <div class="form-group">
+          <input class="form-control" ng-model ="nameLogin" placeholder="Input name to login" name="nameLogin" type="text">
+      </div>
+      <input class="btn btn-lg btn-success btn-block" type="submit" value="Login" ng-click="$ctrl.login()">
 </div>
 </div>
+</div>
+<p ></p><a href="#!/books"><button type="button"  class="btn btn-primary">Go to books</button></a></p>
 

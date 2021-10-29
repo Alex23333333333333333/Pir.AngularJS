@@ -1,3 +1,3 @@
 angular.module('registrationApp', [
-    'ngRoute'
+    'ngRoute', 'core.user'
   ]);

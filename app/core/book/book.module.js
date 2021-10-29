@@ -1,1 +1,1 @@
-angular.module('core.book', ['ngResource'])
+angular.module('core.book', [])

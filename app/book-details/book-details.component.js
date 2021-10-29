@@ -3,19 +3,21 @@ angular.
   module('bookDetailsApp').
   component('bookDetails', {
     templateUrl: 'book-details/book-details.template.html',
-    controller: ['$routeParams', 'Book',
-      function BookDetailsController($routeParams, Book) {
+    controller: ['$routeParams', 'BookList',
+      function BookDetailsController($routeParams, BookList) {
         var self = this;
         var name = localStorage.getItem('NAME');
        
         self.bookId = $routeParams.bookId;
-        var book = Book.query();
-
-        book.$promise.then(function () {
-          self.book = book.find(function (i) { return i.id == self.bookId });
-        })
+       self.book = BookList.getBookDetails(self.bookId);
         self.userIsAutorized = name!=null;
         self.rightToEdit= self.userIsAutorized && name == self.book.addedBy;
+        self.reserve = function(){
+          BookList.reserve(self.bookId);
+        };
+        self.return = function(){
+          BookList.return(self.bookId);
+        }
       }
     ]
   });
