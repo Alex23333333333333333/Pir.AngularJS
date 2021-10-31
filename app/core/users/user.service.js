@@ -49,17 +49,20 @@ angular.
         users.push(user);
         localStorage.setItem('users', JSON.stringify(users));
       }
-      factory.login = function login(name) {
+      factory.login = function (name) {
 
-        if (this.getUser(name) != null)
-        {
+        if (this.getUser(name) != null) {
           localStorage.setItem("USER", name);
+          var user = localStorage.getItem("USER");
           return true;
         }
-          return false;
+        return false;
       }
       factory.autorized = function login() {
         return localStorage.getItem("USER") != null;
+      }
+      factory.getCurrentUserName = function () {
+        return localStorage.getItem("USER");
       }
 
       factory.logout = function login() {

@@ -1,25 +1,40 @@
 'use strict';
 angular.
   module('addBookApp').
-  component('bookAdd', {
+  component('addBook', {
     templateUrl: '/add-book/add-book.template.html',
     controller: ['BookList', '$scope', 'User',
       function AddBookController(BookList, $scope, User) {
         var self = this;
-        self.addBook = function()
-        {
-            var book = {
+        self.add = function () {
+          if ($scope.name == undefined) {
+            alert("You cannot make title empty");
+          }
+          else {
+            var user = User.getCurrentUserName();
+            if (user == undefined) {
+              alert("No permissions for this action");
+            }
+            else {
+
+              var book = {
                 name: $scope.name,
-                date: $scope.date,
+                date: $scope.day,
                 publisher: $scope.publisher,
-                Writer: $scope.Writer,
-                imgUrl:$scope.imgUrl,
+                writer: $scope.writer,
+                imgUrl: $scope.url,
                 available: true,
-                addedBy: User.getUser()
+                addedBy: user,
+                reservedBy: undefined
               };
-            BookList.addBook(book);
+              BookList.addBook(book);
+              alert("Book was added!");
+            }
+
+          }
+
         }
-        
+
       }
     ]
   });

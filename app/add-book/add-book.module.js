@@ -1,3 +1,3 @@
 angular.module('addBookApp', [
-    'ngRoute', 'core.book'
-  ]);
+  'ngRoute', 'core'
+]);
