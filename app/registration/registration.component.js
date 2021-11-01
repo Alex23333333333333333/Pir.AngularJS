@@ -7,9 +7,7 @@ angular.
       function BookDetailsController($routeParams, User, $scope) {
         var self = this;
         self.autorized = User.autorized();
-        var selector = document.getElementById("phone");
-        var im = new Inputmask("99-9999999");
-        im.mask(selector);
+        $scope.myRegex = /[0-9]{3}-[0-9]{3}-[0-9]{4}/;
         self.registrate = function () {
           if ($scope.name == undefined || $scope.birthday == undefined || $scope.adress == undefined || $scope.phone == undefined) {
             alert("Please, fill all fields");
