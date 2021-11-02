@@ -1,1 +1,0 @@
-angular.module('bookListApp', ['core.book', 'core.user', "ngRoute"]);

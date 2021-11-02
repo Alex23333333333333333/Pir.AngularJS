@@ -1,53 +1,8 @@
 angular.
   module('core.book').
-  factory('BookList', [
-    function () {
-      var books = [
-        {
-          id: 1,
-          name: "S",
-          date: new Date("2017", "03", "08"),
-          publisher: "Publisher",
-          writer: "writer1",
-          imgUrl: "img/book.jpg",
-          available: true,
-          addedBy: 1
-
-        },
-        {
-          id: 2,
-          name: "S",
-          date: new Date("2017", "03", "08"),
-          publisher: "Publisher",
-          writer: "writer1",
-          imgUrl: "img/book.jpg",
-          available: true,
-          addedBy: 1
-
-        },
-        {
-          id: 3,
-          name: "S",
-          date: new Date("2017", "03", "08"),
-          publisher: "Publisher",
-          writer: "writer1",
-          imgUrl: "img/book.jpg",
-          available: true,
-          addedBy: 1
-
-        },
-        {
-          id: 4,
-          name: "S",
-          date: new Date("2017", "03", "08"),
-          publisher: "Publisher",
-          writer: "writer1",
-          imgUrl: "img/book.jpg",
-          available: true,
-          addedBy: 1
-
-        },
-      ];
+  factory('BookList', [ '$http',
+    function ($http) {
+      var books = [];
       var factory = {};
 
       factory.getBookList = function () {
@@ -59,7 +14,11 @@ angular.
 
       factory.seeding = function () {
         if (JSON.parse(localStorage.getItem('bookList')) == null) {
-          localStorage.setItem('bookList', JSON.stringify(books));
+          $http.get('/data/books.json').then(function(response) {
+            books = response.data;
+            localStorage.setItem('bookList', JSON.stringify(books) )
+          });
+          
         }
 
       }

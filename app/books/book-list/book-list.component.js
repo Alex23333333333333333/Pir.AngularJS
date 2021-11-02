@@ -1,7 +1,7 @@
 'use strict';
-angular.module('bookListApp').
+angular.module('booksApp').
   component('bookList', {
-    templateUrl: 'book-list/book-list.template.html',
+    templateUrl: 'books/book-list/book-list.template.html',
     controller: ['BookList', 'User', function BookListcontroller(BookList, User) {
       this.orderProp = 'name';
       BookList.seeding();

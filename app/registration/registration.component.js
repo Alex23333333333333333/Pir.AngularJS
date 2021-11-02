@@ -3,14 +3,14 @@ angular.
   module('registrationApp').
   component('registration', {
     templateUrl: 'registration/registration.template.html',
-    controller: ['$routeParams', 'User', '$scope',
-      function BookDetailsController($routeParams, User, $scope) {
+    controller: [ 'User', '$scope',
+      function RegistrationController( User, $scope) {
         var self = this;
         self.autorized = User.autorized();
         self.registrate = function () {
           if ($scope.name == undefined || $scope.birthday == undefined || $scope.adress == undefined || $scope.phone == undefined) {
             alert("Please, fill all fields");
-            break;
+            return;
           }
         
             var newUser = {

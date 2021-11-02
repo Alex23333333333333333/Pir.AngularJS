@@ -1,8 +1,8 @@
 'use strict';
 angular.
-  module('addBookApp').
+  module('booksApp').
   component('addBook', {
-    templateUrl: '/add-book/add-book.template.html',
+    templateUrl: 'books/book-add/book-add.template.html',
     controller: ['BookList', '$scope', 'User',
       function AddBookController(BookList, $scope, User) {
         var self = this;
