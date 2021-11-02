@@ -72,7 +72,7 @@ angular.
 
       factory.editBook = function (newBook) {
         var books = this.getBookList();
-        var arrId = books.findIndex(function (item) { return item.id == newBook.id });
+        var arrId = books.findIndex((item) => item.id == newBook.id);
         books[arrId] = newBook;
         localStorage.setItem('bookList', JSON.stringify(books));
         return true;

@@ -7,12 +7,12 @@ angular.
       function BookDetailsController($routeParams, User, $scope) {
         var self = this;
         self.autorized = User.autorized();
-        $scope.myRegex = /[0-9]{3}-[0-9]{3}-[0-9]{4}/;
         self.registrate = function () {
           if ($scope.name == undefined || $scope.birthday == undefined || $scope.adress == undefined || $scope.phone == undefined) {
             alert("Please, fill all fields");
+            break;
           }
-          else {
+        
             var newUser = {
               name: $scope.name,
               birthday: $scope.birthday,
@@ -21,7 +21,7 @@ angular.
             }
             User.addUser(newUser);
             alert("Registrated successfully!")
-          }
+          
 
         }
         self.login = function () {

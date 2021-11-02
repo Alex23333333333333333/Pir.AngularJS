@@ -51,7 +51,7 @@ angular.
             reservedBy: currentUserName
           };
           self.book = newBook;
-          self.rightToReturn = self.userIsAutorized && currentUserName == self.book.reservedBy;
+          self.rightToReturn = undefined;
           BookList.editBook(newBook);
         }
       }
