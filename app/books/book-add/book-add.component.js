@@ -7,10 +7,6 @@ angular.
       function AddBookController(BookList, $scope, User) {
         var self = this;
         self.add = function () {
-          if ($scope.name == undefined) {
-            alert("You cannot make title empty");
-          }
-          else {
             var user = User.getCurrentUserName();
             if (user == undefined) {
               alert("No permissions for this action");
@@ -30,11 +26,7 @@ angular.
               BookList.addBook(book);
               alert("Book was added!");
             }
-
           }
-
         }
-
-      }
     ]
   });

@@ -1,29 +1,29 @@
-<div>
+<form ng-submit="$ctrl.edit()">
     <div class="panel-heading">
         <h3 class="panel-title">Please input information about book</h3>
     </div>
     <div class="panel-body">
         <div class="form-group">
             <label>Input book title</label>
-            <input class="form-control" ng-model="name" placeholder="{{book.name}}" type="text">
+            <input class="form-control" ng-model="name"type="text" required>
         </div>
         <div class="form-group">
             <label>Input book publisher</label>
-            <input class="form-control" ng-model="publisher" placeholder="{{book.publisher}}" type="text">
+            <input class="form-control" ng-model="publisher"type="text" required>
         </div>
         <div class="form-group">
             <label>Input writer name</label>
-            <input class="form-control" ng-model="writer" placeholder="{{book.writer}}" type="text">
+            <input class="form-control" ng-model="writer" required type="text">
         </div>
         <div class="form-group">
             <label>Input image url</label>
-            <input class="form-control" placeholder="{{book.imgUrl}}" ng-model="url" type="text">
+            <input class="form-control" ng-model="url" type="text">
         </div>
         <div class="form-group">
             <label>When book was published?</label>
-            <input class="form-control" placeholder="{{book.date}}" ng-model="day" type="date">
+            <input class="form-control" required ng-model="day" type="date">
         </div>
-        <input class="btn btn-lg btn-success btn-block" type="submit" value="Save" ng-click="$ctrl.edit()">
+        <input class="btn btn-lg btn-success btn-block" type="submit" value="Save" >
     </div>
-</div>
+</form>
 <p></p><a href="#!/books/{{bookId}}"><button type="button" class="btn btn-primary">Go back to book</button></a></p>

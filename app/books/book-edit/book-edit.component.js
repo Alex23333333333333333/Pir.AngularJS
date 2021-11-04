@@ -8,6 +8,12 @@ angular.
                 var self = this;
                 $scope.bookId = $routeParams.bookId;
                 $scope.book = BookList.getBookDetails($scope.bookId);
+                $scope.day = $scope.book.date;
+                $scope.url = $scope.book.imgUrl;
+                $scope.publisher = $scope.book.publisher;
+                $scope.writer = $scope.book.writer;
+                $scope.name = $scope.book.name;
+
 
                 self.edit = function () {
                     if ($scope.name == undefined) {
