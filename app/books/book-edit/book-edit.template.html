@@ -16,12 +16,12 @@
             <input class="form-control" ng-model="writer" required type="text">
         </div>
         <div class="form-group">
-            <label>Input image url</label>
-            <input class="form-control" ng-model="url" type="text">
+            <label>Image:</label>
+            <input type="file" ng-model = "url" id="file" name="file" />
         </div>
         <div class="form-group">
             <label>When book was published?</label>
-            <input class="form-control" required ng-model="day" type="date">
+            <input class="form-control" required ng-model="day " type="date">
         </div>
         <input class="btn btn-lg btn-success btn-block" type="submit" value="Save" >
     </div>
