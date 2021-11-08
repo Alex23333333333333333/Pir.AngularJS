@@ -6,13 +6,11 @@ angular.
     controller: [ 'User', '$scope',
       function RegistrationController( User, $scope) {
         var self = this;
+        var form = document.getElementById("form-id");
+        var users = User.seeding();
         self.autorized = User.autorized();
         self.registrate = function () {
-          if ($scope.name == undefined || $scope.birthday == undefined || $scope.adress == undefined || $scope.phone == undefined) {
-            alert("Please, fill all fields");
-            return;
-          }
-        
+         
             var newUser = {
               name: $scope.name,
               birthday: $scope.birthday,
@@ -21,10 +19,9 @@ angular.
             }
             User.addUser(newUser);
             alert("Registrated successfully!")
-          
-
         }
         self.login = function () {
+         
           if (User.login($scope.nameLogin)) {
             self.autorized = true;
             alert("Successfully loged in!");

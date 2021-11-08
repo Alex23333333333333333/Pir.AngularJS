@@ -1,3 +1,3 @@
 angular.module('registrationApp', [
-  'ngRoute', 'core.user'
+  'ngRoute', 'core.user', 'ui.mask'
 ]);

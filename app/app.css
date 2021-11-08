@@ -74,15 +74,9 @@ h1 {
   font-size: 1.2em;
   font-weight: bold;
 }
-#login
+
+.form-control
 {
-border: black;
-display:inline-block;
-width: 400px;
-}
-#registration
-{
-  border: black;
-  display:inline-block;
-  width: 400px;
+  margin: 10px;
+  
 }

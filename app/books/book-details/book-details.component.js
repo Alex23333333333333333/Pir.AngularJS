@@ -22,8 +22,9 @@ angular.
           self.rightToReturn = false;
           User.logout();
         };
-        self.reserve = function () {
-          var newBook = {
+        var createNewBook = function()
+        {
+          return  {
             id: self.book.id,
             name: self.book.name,
             date: self.book.date,
@@ -34,26 +35,22 @@ angular.
             addedBy: self.book.addedBy,
             reservedBy: currentUserName
           };
-          self.book = newBook;
-          self.rightToReturn = self.userIsAutorized && currentUserName == self.book.reservedBy;
-          BookList.editBook(newBook);
+          
         };
-        self.return = function () {
-          var newBook = {
-            id: self.book.id,
-            name: self.book.name,
-            date: self.book.date,
-            publisher: self.book.publisher,
-            writer: self.book.writer,
-            imgUrl: self.book.imgUrl,
-            available: !self.book.available,
-            addedBy: self.book.addedBy,
-            reservedBy: currentUserName
-          };
-          self.book = newBook;
-          self.rightToReturn = undefined;
-          BookList.editBook(newBook);
+        
+        self.reserve = function () {
+          self.book = createNewBook();
+          self.rightToReturn = self.userIsAutorized && currentUserName == self.book.reservedBy;
+          BookList.editBook(self.Book);
         }
-      }
+         
+        self.return = function () {
+         self.book = createNewBook();
+         self.book.reservedBy=undefined;
+         self.rightToReturn = undefined;
+          BookList.editBook(self.book);
+        }
+      
+    }
     ]
   });
