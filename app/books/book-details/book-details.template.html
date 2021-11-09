@@ -1,8 +1,5 @@
 
 <img ng-src="{{$ctrl.book.imgUrl}}" class="book" />
-<a href="#!/books"><button type="button" class="btn btn-primary">List of Books</button></a>
-<a ng-if ="!$ctrl.userIsAutorized" href="#!/registration"><button type="button" class="btn btn-primary">Log in</button></a>
-<input class="btn btn-primary" ng-if ="$ctrl.userIsAutorized"  type="submit" value="Log out" ng-click="$ctrl.logOut()">
 <h1>{{$ctrl.book.name}}</h1>
 
 <div class="book-thumbs">
