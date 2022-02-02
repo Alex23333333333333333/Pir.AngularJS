@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">Please input information about book</h3>
     </div>
-    <form  class="panel-body"ng-submit="$ctrl.add()">
+    <form  id="addForm" class="panel-body"ng-submit="$ctrl.add()">
         
             <label>Title:</label>
             <input  class="form-control" required ng-model="name" type="text"  />
@@ -14,7 +14,7 @@
             <input  class="form-control" required ng-model="writer" type="text" />
 
             <label>Date of publish:</label>
-            <input  class="form-control" required ng-model="day" type="date" />
+            <input  class="form-control" required ng-model="day" type="date"/>
 
             <label>Image:</label>
             <input type="file" id="file" name="file"/>

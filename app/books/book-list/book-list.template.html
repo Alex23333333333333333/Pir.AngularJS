@@ -5,11 +5,11 @@
 
       <ul class="books">
         <li ng-repeat="book in $ctrl.books | filter:$ctrl.query |orderBy:$ctrl.orderProp" class="thumbnail">
-          <a href="#!/books/{{book.id}}" class="thumb">
-            <img ng-src="{{book.imgUrl}}" alt="{{book.name}}" />
+          <a href="#!/books/{{book.Id}}" class="thumb">
+            <img alt="I like books" ng-src="{{book.ImgUrl}}" alt="{{book.Name}}" style="max-height: 100px;"/>
           </a>
-          <a href="#!/books/{{book.id}}">{{book.name}}</a>
-          <p>{{book.writer}}</p>
+          <a href="#!/books/{{book.Id}}">{{book.Name}}</a>
+          <p>{{book.Writer}}</p>
         </li>
       </ul>
 

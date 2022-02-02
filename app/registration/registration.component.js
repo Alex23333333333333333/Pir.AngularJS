@@ -3,35 +3,44 @@ angular.
   module('registrationApp').
   component('registration', {
     templateUrl: 'registration/registration.template.html',
-    controller: [ 'User', '$scope',
-      function RegistrationController( User, $scope) {
+    controller: ['User', '$scope', '$interval',
+      function RegistrationController(User, $scope, $interval) {
         var self = this;
-        var form = document.getElementById("form-id");
-        var users = User.seeding();
-        self.autorized = User.autorized();
+        var interval = $interval(() => { self.autorized = User.autorized(); }, 100);
+
         self.registrate = function () {
-         
-            var newUser = {
-              name: $scope.name,
-              birthday: $scope.birthday,
-              adress: $scope.adress,
-              phone: $scope.phone
-            }
-            User.addUser(newUser);
-            alert("Registrated successfully!")
-        }
-        self.login = function () {
-         
-          if (User.login($scope.nameLogin)) {
-            self.autorized = true;
-            alert("Successfully loged in!");
+          if (self.password != self.passwordConf) {
+            alert("Passworda must match!");
           }
           else {
-            alert("Wrong name!");
+
+
+            var newUser = {
+              Name: self.name,
+              Birthday: self.birthday,
+              Adress: self.adress,
+              Phone: self.phone,
+              Email: self.email,
+              Password: self.password
+            }
+            document.getElementById("registrationForm").reset();
+            User.addUser(newUser).then((data) => { });
           }
         }
+        self.login = function () {
 
 
+          var loginModel = {
+            username: self.emailLogin,
+            password: self.passwordLogin,
+            grant_type: "password"
+
+          }
+          document.getElementById("loginForm").reset();
+          User.login(loginModel).then(data => {
+            if (data == true) self.autorized = true;
+          })
+        }
       }
     ]
   });

@@ -1,72 +1,61 @@
 angular.
   module('core.book').
-  factory('User', [
-    function () {
+  factory('User', ['$http','$location',
+    function ($http,$location) {
       var factory = {};
-      var users = [
-        {
-          name: "dasha",
-          birthday: "2001.09.09",
-          adress: "ddd",
-          phone: "67546546"
-
-        },
-        {
-          name: "jane",
-          birthday: "2001.09.09",
-          adress: "ddd",
-          phone: "67546546"
-
-        },
-        {
-          name: "luda",
-          birthday: "2001.09.09",
-          adress: "ddd",
-          phone: "67546546"
-
-        },
-        {
-          name: "sasha",
-          birthday: "2001.09.09",
-          adress: "ddd",
-          phone: "67546546"
-
-        }
-      ];
-
-      factory.seeding = function () {
-        if (JSON.parse(localStorage.getItem('users')) == null)
-          localStorage.setItem('users', JSON.stringify(users));
-        return users;
-      }
-
-      factory.getUser = function (name) {
-        return JSON.parse(localStorage.getItem('users')).find(function (user) { return user.name == name });
-      }
 
       factory.addUser = function (user) {
-        var users = JSON.parse(localStorage.getItem('users'));
-        users.push(user);
-        localStorage.setItem('users', JSON.stringify(users));
-      }
-      factory.login = function (name) {
+        return $http.post('https://localhost:44373/api/users', JSON.stringify(user)).then(function successCallback(response) {
+          alert("Registrated successfully!");
+          return response.data;
 
-        if (this.getUser(name) != null) {
-          localStorage.setItem("USER", name);
-          var user = localStorage.getItem("USER");
+        }, function errorCallback(response) {
+          alert(response.data);
+        });
+      }
+      factory.login = function (user) {
+        var data = "grant_type=password&username=" + user.username + "&password=" + user.password;
+
+        return $http.post('https://localhost:44373/login',data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } ).then(function successCallback(response) {
+         localStorage.setItem("JWT", response.data.access_token);
+          localStorage.setItem("Id", factory.parseJWT(response.data.access_token).Id);
+
+          alert("Successfully loged in!");
           return true;
-        }
-        return false;
+        }, function errorCallback(response) {
+          alert(response.data.Message);
+        });
       }
-      factory.autorized = function login() {
-        return localStorage.getItem("USER") != null;
+      factory.parseJWT = function(token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    
+        return JSON.parse(jsonPayload);
       }
-      factory.getCurrentUserName = function () {
-        return localStorage.getItem("USER");
+      factory.autorized = function () {
+        return localStorage.getItem("Id") != null;
+      }
+      factory.getCurrentUserId = function () {
+        return localStorage.getItem("Id");
       }
 
-      factory.logout = function login() {
-        localStorage.removeItem("USER");
+
+      factory.logout = function() {
+        return $http({
+          method: 'GET',
+          url: 'https://localhost:44373/logout/'
+        }).then(function successCallback(response) {
+          localStorage.removeItem('JWT');
+          localStorage.removeItem('Id');
+          $location.path('/registration');
+
+          return true;
+        }, function errorCallback(response) {
+          alert(response.data);
+        });
       }
 
       return factory;

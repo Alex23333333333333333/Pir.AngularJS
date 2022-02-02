@@ -2,13 +2,11 @@
 angular.module('booksApp').
   component('bookList', {
     templateUrl: 'books/book-list/book-list.template.html',
-    controller: ['BookList', 'User', function BookListcontroller(BookList, User) {
+    controller: ['BookList', function BookListcontroller(BookList) {
       this.orderProp = 'name';
-      BookList.seeding();
-      this.books = BookList.getBookList();
-      var users = User.seeding();
-
-      this.books = BookList.getBookList();
-      this.autorized = User.autorized();
+      var self = this;
+      BookList.getBookList().then(
+        (data)=> {self.books=data;}
+        );
     }]
   })

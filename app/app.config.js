@@ -27,6 +27,11 @@ angular.
 angular.
   module('libraryApp').run(["$rootScope", "$location", "authFact", function ($rootScope, $location, authFact) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
+      if(next.$$route==undefined)
+      {
+        $location.path('/');
+        return;
+      }
       if (next.$$route.authenticated && next.$$route.template=='<add-book></add-book>') {
         if(!authFact.hasRightToAdd())
         {
@@ -35,7 +40,7 @@ angular.
       }
       if (next.$$route.authenticated && next.$$route.template=="<edit-book></edit-book>") {
 
-        if(!authFact.hasRightToEdit(next.params.bookId))
+        if(authFact.hasRightToEdit(next.params.bookId).then((data)=>{data==false}))
         {
         $location.path('/');
         }
