@@ -7,6 +7,7 @@
   "repository": "https://github.com/angular/angular-seed",
   "license": "MIT",
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.30",
     "angular": "^1.8.2",
     "angular-jwt": "^0.1.11",
     "angular-loader": "^1.7.5",

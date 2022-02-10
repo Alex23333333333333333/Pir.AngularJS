@@ -1,1 +1,1 @@
-angular.module('core.book', [])
+var app =angular.module('core.book', []);

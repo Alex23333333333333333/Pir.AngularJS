@@ -5,11 +5,11 @@
 <div class="book-thumbs">
   <p ng-if="$ctrl.book.IsAvailable &&  $ctrl.userIsAutorized"> <input class="btn btn-primary" type="submit"
       value="Reserve" ng-click="$ctrl.reserve()"></p>
-  <p ng-if="$ctrl.book.IsAvailable && !$ctrl.userIsAutorized"><a href="#!/registration"><button type="button" id="Log in"
+  <p ng-if="$ctrl.book.IsAvailable && !$ctrl.userIsAutorized"><a ui-sref="registration"><button type="button" id="Log in"
         class="btn btn-primary">Log in to reserve</button></a></p>
         <p ng-if="!$ctrl.book.IsAvailable && $ctrl.rightToReturn"><input class="btn btn-primary" type="submit" value="Return"
           ng-click="$ctrl.reserve()"></p>
-  <p ng-if="$ctrl.rightToEdit&&($ctrl.book.IsAvailable|| $ctrl.rightToReturn)"><a href="#!/editBook/{{bookId}}"><button type="button" id="Edit"
+  <p ng-if="$ctrl.rightToEdit&&($ctrl.book.IsAvailable|| $ctrl.rightToReturn)"><a ui-sref="edit-book({bookId: bookId})"><button type="button" id="Edit"
         class="btn btn-primary">Edit</button></a></p>
         <p ng-if="$ctrl.rightToEdit&&$ctrl.rightToReturn||($ctrl.rightToEdit&&$ctrl.book.IsAvailable)"><button type="button" ng-click="$ctrl.delete()" id="Delete"
           class="btn btn-primary">Delete</button></p>

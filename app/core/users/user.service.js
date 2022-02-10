@@ -5,25 +5,25 @@ angular.
       var factory = {};
 
       factory.addUser = function (user) {
-        return $http.post('https://localhost:44373/api/users', JSON.stringify(user)).then(function successCallback(response) {
+        return $http.post('https://localhost:44378/api/users', JSON.stringify(user)).then(function successCallback(response) {
           alert("Registrated successfully!");
           return response.data;
 
         }, function errorCallback(response) {
-          alert(response.data);
+        
         });
       }
       factory.login = function (user) {
         var data = "grant_type=password&username=" + user.username + "&password=" + user.password;
 
-        return $http.post('https://localhost:44373/login',data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } ).then(function successCallback(response) {
+        return $http.post('https://localhost:44378/login',data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } ).then(function successCallback(response) {
          localStorage.setItem("JWT", response.data.access_token);
           localStorage.setItem("Id", factory.parseJWT(response.data.access_token).Id);
 
           alert("Successfully loged in!");
           return true;
         }, function errorCallback(response) {
-          alert(response.data.Message);
+        
         });
       }
       factory.parseJWT = function(token) {
@@ -46,7 +46,7 @@ angular.
       factory.logout = function() {
         return $http({
           method: 'GET',
-          url: 'https://localhost:44373/logout/'
+          url: 'https://localhost:44378/logout/'
         }).then(function successCallback(response) {
           localStorage.removeItem('JWT');
           localStorage.removeItem('Id');
@@ -54,7 +54,7 @@ angular.
 
           return true;
         }, function errorCallback(response) {
-          alert(response.data);
+    
         });
       }
 
