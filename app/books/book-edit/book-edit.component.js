@@ -7,26 +7,22 @@ angular.
             function EditBookController(BookList, $scope, User, $routeParams) {
                 var self = this;
                 $scope.bookId = $routeParams.bookId;
-                $scope.book = BookList.getBookDetails($scope.bookId);
-                $scope.day = new Date($scope.book.date);
-                $scope.url = $scope.book.imgUrl;
-                $scope.publisher = $scope.book.publisher;
-                $scope.writer = $scope.book.writer;
-                $scope.name = $scope.book.name;
-
-
+                $scope.book = BookList.getBookDetails($scope.bookId).then((book)=>{
+                    $scope.day = new Date(book.Date);
+                    $scope.url =book.ImgUrl;
+                    $scope.publisher =book.Publisher;
+                    $scope.writer = book.Writer;
+                    $scope.name = book.Name;
+                });
+              
                 self.edit = function () {
 
                     var book = {
-                        id: $scope.bookId,
-                        name: $scope.name,
-                        date: $scope.day,
-                        publisher: $scope.publisher,
-                        writer: $scope.writer,
-                        imgUrl: $scope.url,
-                        available: $scope.book.available,
-                        addedBy: $scope.book.addedBy,
-                        reservedBy: $scope.book.reservedBy
+                        Name: $scope.name,
+                        Date: $scope.day,
+                        Publisher: $scope.publisher,
+                        Writer: $scope.writer,
+                        ImgUrl: $scope.url,
                     };
                     var file = document.getElementById('file').files[0];
                     if (file != undefined) {
@@ -35,14 +31,13 @@ angular.
                         reader.onloadend = function (e) {
                             var data = e.target.result;
                             book.imgUrl = data;
-                            if (BookList.editBook(book))
-                                alert("Book was edit!");
-                            
+                            BookList.editBook(  $scope.bookId, book);
+                                   
                         }
                         return;
                     }
-                    if (BookList.editBook(book))
-                        alert("Book was edit!");
+                  BookList.editBook( $scope.bookId, book);
+                        
                 }
             }
         ]

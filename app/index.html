@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="lib/bootstrap.css" />
   <link rel="stylesheet" href="app.css" />
   <script src="lib/angular/angular.js"></script>
-
+  <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+  <script src="lib/angular-ui-mask/dist/mask.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
   <script src="lib/angular-resource/angular-resource.js"></script>
-  <script src="lib/mask.js"></script>
   <script src="app.js"></script>
   <script src ="authFact.js"></script>
   <script src="app.config.js"></script>
@@ -31,12 +31,16 @@
   <script src="registration/registration.module.js"></script>
   <script src="registration/registration.component.js"></script>
 
+  <script src ="sidebar/sidebar.module.js"></script>
+  <script src ="sidebar/sidebar.component.js"></script>
+
 
 
 </head>
 
-<body>
-  <div ng-view></div>
+<body class ="wrapper">
+  <div id = "content" ng-view></div>
+  <sidebar id = "sidebar"></sidebar>
 </body>
 
 </html>

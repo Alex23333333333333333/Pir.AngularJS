@@ -2,14 +2,14 @@ angular.module('libraryApp').factory('authFact',['User', 'BookList', function(Us
     var factory={};
     factory.hasRightToEdit=function(id)
     {
-     var currentUser = User.getCurrentUserName();
-     var book = BookList.getBookDetails(id);
-     return book!=undefined&&currentUser==book.addedBy;
+     var currentUser = User.getCurrentUserId();
+    BookList.getBookDetails(id).then((book)=>{return book!=undefined&&currentUser==book.addedBy});
+  
 
     }
     factory.hasRightToAdd=function()
     {
-     var currentUser = User.getCurrentUserName();
+     var currentUser = User.autorized();
      return currentUser!=undefined;
 
     }

@@ -1,0 +1,25 @@
+<div>
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Library</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Menu</p>
+            <li>
+                <a ui-sref="books" class="dropdown-toggle">List of books</a>
+            </li>
+            <li ng-if="autorized()">
+                <a ui-sref="add-book">Add a book</a>
+            </li>
+            <li ng-if="!autorized()">
+                <a ui-sref="registration">Log in to add a book</a>
+            </li>
+            <li ng-if="autorized()">
+                <a ui-sref="registration" ng-click="logout()">Log out</a>
+            </li>
+        
+        </ul>
+    </nav>
+
+</div>

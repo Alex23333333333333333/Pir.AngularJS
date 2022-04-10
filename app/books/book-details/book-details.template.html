@@ -1,29 +1,28 @@
 
-<img ng-src="{{$ctrl.book.imgUrl}}" class="book" />
-<a href="#!/books"><button type="button" class="btn btn-primary">List of Books</button></a>
-<a ng-if ="!$ctrl.userIsAutorized" href="#!/registration"><button type="button" class="btn btn-primary">Log in</button></a>
-<input class="btn btn-primary" ng-if ="$ctrl.userIsAutorized"  type="submit" value="Log out" ng-click="$ctrl.logOut()">
-<h1>{{$ctrl.book.name}}</h1>
+<img alt="I like books" ng-src="{{$ctrl.book.ImgUrl}}" class="book" />
+<h1>{{$ctrl.book.Name}}</h1>
 
 <div class="book-thumbs">
-  <p ng-if="$ctrl.book.available &&  $ctrl.userIsAutorized"> <input class="btn btn-primary" type="submit"
+  <p ng-if="$ctrl.book.IsAvailable &&  $ctrl.userIsAutorized"> <input class="btn btn-primary" type="submit"
       value="Reserve" ng-click="$ctrl.reserve()"></p>
-  <p ng-if="$ctrl.book.available && !$ctrl.userIsAutorized"><a href="#!/registration"><button type="button" id="Log in"
+  <p ng-if="$ctrl.book.IsAvailable && !$ctrl.userIsAutorized"><a ui-sref="registration"><button type="button" id="Log in"
         class="btn btn-primary">Log in to reserve</button></a></p>
-        <p ng-if="!$ctrl.book.available && $ctrl.rightToReturn"><input class="btn btn-primary" type="submit" value="Return"
-          ng-click="$ctrl.return()"></p>
-  <p ng-if="$ctrl.rightToEdit"><a href="#!/editBook/{{bookId}}"><button type="button" id="Edit"
+        <p ng-if="!$ctrl.book.IsAvailable && $ctrl.rightToReturn"><input class="btn btn-primary" type="submit" value="Return"
+          ng-click="$ctrl.reserve()"></p>
+  <p ng-if="$ctrl.rightToEdit&&($ctrl.book.IsAvailable|| $ctrl.rightToReturn)"><a ui-sref="edit-book({bookId: bookId})"><button type="button" id="Edit"
         class="btn btn-primary">Edit</button></a></p>
+        <p ng-if="$ctrl.rightToEdit&&$ctrl.rightToReturn||($ctrl.rightToEdit&&$ctrl.book.IsAvailable)"><button type="button" ng-click="$ctrl.delete()" id="Delete"
+          class="btn btn-primary">Delete</button></p>
 </div>
 
 <ul class="specs">
   <dl>
     <dt>Published</dt>
-    <dd>{{$ctrl.book.publisher}}</dd>
-    <dd>{{$ctrl.book.date | date}}</dd>
+    <dd style="max-width: 90px; overflow: hidden;">{{$ctrl.book.Publisher}}</dd>
+    <dd>{{$ctrl.book.Date | date}}</dd>
     <dt>Available</dt>
-    <dd>{{$ctrl.book.available}}</dd>
-    <dt>Writer</dt>
-    <dd>{{$ctrl.book.writer}}</dd>
+    <dd>{{$ctrl.book.IsAvailable}}</dd>
+    <dt >Writer</dt>
+    <dd style="max-width: 90px; overflow: hidden;">{{$ctrl.book.Writer}}</dd>
   </dl>
 </ul>

@@ -6,51 +6,44 @@ angular.
     controller: ['$routeParams', 'BookList', 'User', '$scope',
       function BookDetailsController($routeParams, BookList, User, $scope) {
         var self = this;
-        var currentUserName = User.getCurrentUserName();
+        var currentUserId = User.getCurrentUserId();
 
         self.bookId = $routeParams.bookId;
         $scope.bookId = self.bookId;
-        self.book = BookList.getBookDetails(self.bookId);
-        $scope.available = self.book.available
+        BookList.getBookDetails(self.bookId).then((data) => {
+          self.book = data;
+          self.rightToEdit = self.userIsAutorized && currentUserId == self.book.AddedBy;
+          self.rightToReturn = self.userIsAutorized && currentUserId == self.book.ReservedBy;
+        });
 
-        self.userIsAutorized = currentUserName != null;
-        self.rightToEdit = self.userIsAutorized && currentUserName == self.book.addedBy;
-        self.rightToReturn = self.userIsAutorized && currentUserName == self.book.reservedBy;
+
+        self.userIsAutorized = currentUserId != null;
+
         self.logOut = function () {
           self.userIsAutorized = false;
           self.rightToEdit = false;
           self.rightToReturn = false;
           User.logout();
         };
-        var createNewBook = function()
-        {
-          return  {
-            id: self.book.id,
-            name: self.book.name,
-            date: self.book.date,
-            publisher: self.book.publisher,
-            writer: self.book.writer,
-            imgUrl: self.book.imgUrl,
-            available: !self.book.available,
-            addedBy: self.book.addedBy,
-            reservedBy: currentUserName
-          };
-          
-        };
-        
+
+
         self.reserve = function () {
-          self.book = createNewBook();
-          self.rightToReturn = self.userIsAutorized && currentUserName == self.book.reservedBy;
-          BookList.editBook(self.Book);
+          BookList.changeStatus(self.bookId).then((data) => {
+            if (data) {
+              self.book.IsAvailable = ! self.book.IsAvailable;
+              if(!self.book.IsAvailable)
+              {
+                self.rightToReturn =true;
+              }   
+            }
+          });
         }
-         
-        self.return = function () {
-         self.book = createNewBook();
-         self.book.reservedBy=undefined;
-         self.rightToReturn = undefined;
-          BookList.editBook(self.book);
+        self.delete = function () {
+          BookList.delete(self.bookId);
+          $window.location.href = '#!/books';
         }
-      
-    }
+
+
+      }
     ]
   });

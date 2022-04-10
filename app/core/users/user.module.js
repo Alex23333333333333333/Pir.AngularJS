@@ -1,1 +1,1 @@
-angular.module('core.user', [])
+var app= angular.module('core.user', []);
