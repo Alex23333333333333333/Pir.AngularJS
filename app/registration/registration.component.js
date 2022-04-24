@@ -31,10 +31,8 @@ angular.
 
 
           var loginModel = {
-            username: self.emailLogin,
-            password: self.passwordLogin,
-            grant_type: "password"
-
+            Email: self.emailLogin,
+            Password: self.passwordLogin,
           }
           document.getElementById("loginForm").reset();
           User.login(loginModel).then(data => {

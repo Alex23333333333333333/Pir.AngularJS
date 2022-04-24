@@ -1,4 +1,4 @@
 
 angular.module('registrationApp', [
-  'ngRoute', 'core.user', 'ui.mask'
+  'ngRoute', 'core.user'
 ]);

@@ -1,4 +1,4 @@
-var app = angular.module('core', ['core.book', 'core.user']);
+var app = angular.module('core', ['core.item', 'core.user','core.order']);
 app.factory('LibraryInterceptor', ['$log', '$location', function ($q, $location, dependency2) {
     return {
         // optional method

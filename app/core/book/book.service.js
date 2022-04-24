@@ -1,36 +1,34 @@
 angular.
-  module('core.book').
-  factory('BookList', ['$http', '$location',
+  module('core.item').
+  factory('ItemsService', ['$http', '$location',
     function ($http, $location) {
       var books = [];
       var factory = {};
 
-      factory.getBookList = function () {
-        return $http.get('https://localhost:44378/api/Books').then(function successCallback(response) {
+      factory.getItems = function () {
+        return $http.get('https://localhost:44392/Items').then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
     
         });
       };
 
-      factory.getBookDetails = function (id) {
+      factory.getItem = function (id) {
         return $http({
           method: 'GET',
-          url: 'https://localhost:44378/api/books/',
-          params: { id: id }
+          url: 'https://localhost:44392/Items/id?itemId='+id
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
           
         });
-      }
+      };
 
-      factory.editBook = function (id, newBook) {
-        $http.defaults.headers.common.Authorization = 'Bearer ' + localStorage.getItem('JWT');
-        var url = 'https://localhost:44378/api/Books/' + id
-        return $http.put(url, JSON.stringify(newBook)).then(function successCallback(response) {
+      factory.editItem = function (item) {
+        var url = 'https://localhost:44392/Items/';
+        return $http.put(url, JSON.stringify(item)).then(function successCallback(response) {
 
-          alert("The book was succeddfully edited");
+          alert("The item was succeddfully edited");
         }, function errorCallback(response) {
           {
             
@@ -54,24 +52,22 @@ angular.
         });
       }
 
-      factory.addBook = function (newBook) {
-        $http.defaults.headers.common.Authorization = 'Bearer ' + localStorage.getItem('JWT');
-        return $http.post('https://localhost:44378/api/books/', JSON.stringify(newBook)).then(function successCallback(response) {
+      factory.addItem = function (item) {
+        return $http.post('https://localhost:44392/Items/', JSON.stringify(item)).then(function successCallback(response) {
 
-          alert("The book was succeddfully added");
+          alert("The item was succeddfully added");
         }, function errorCallback(response) {
           
            
         });
       }
       factory.delete = function (id) {
-        $http.defaults.headers.common.Authorization = 'Bearer ' + localStorage.getItem('JWT');
         return $http({
           method: 'DELETE',
-          url: 'https://localhost:44378/api/books/',
+          url: 'https://localhost:44392/Items',
           params: { id: id }
         }).then(function successCallback(response) {
-          alert("Book was successfully deleted")
+          alert("Item was successfully deleted")
           $location.path('/');
 
         }, function errorCallback(response) {

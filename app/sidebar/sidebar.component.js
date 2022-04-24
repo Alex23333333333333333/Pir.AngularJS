@@ -7,6 +7,9 @@ component('sidebar', {
     $scope.autorized = function () {
       return User.autorized();
     }
+    $scope.role = function () {
+      return User.userRole();
+    }
     $scope.logout = function () {
       User.logout();
     }

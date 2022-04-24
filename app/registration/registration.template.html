@@ -1,31 +1,31 @@
-<div ng-if="!$ctrl.autorized">
-    <div class="panel-heading">
-        <h3 class="panel-title">Please sign in</h3>
+<div class="row justify-content-center " ng-if="!$ctrl.autorized">
+    <div class="card" style="width:400px">
+        <div class="card-body">
+
+            <h5 class="card-title">Please sign in</h5>
+
+            <form id="loginForm" ng-submit="$ctrl.login()">
+                <div class="form-group">
+                    <label for="emailLogin">Email</label>
+                    <input class="form-control" ng-model="$ctrl.emailLogin" placeholder="Input email to login"
+                        name="emailLogin" type="text" required />
+                </div>
+                <div class="form-group">
+                    <label for="passwordLogin">Password</label>
+                    <input class="form-control" ng-model="$ctrl.passwordLogin" placeholder="Input password to login"
+                        name="passwordLogin" type="password" required />
+                </div>
+                <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+            </form>
+        </div>
+
     </div>
-    <form class="panel-body" id="registrationForm" ng-submit="$ctrl.registrate()" >
-        <input class="form-control" required ng-model="$ctrl.name" placeholder="name" name="name" type="text"/>
 
-        <input class="form-control" required ng-model="$ctrl.adress" placeholder="adress" name="adress" type="text"/>
-        <input class="form-control" required ng-model="$ctrl.email" placeholder="email" name="adress" type="email"/>
-        <input class="form-control" required ng-model="$ctrl.password" placeholder="password" name="password" type="password"/>
-        <input class="form-control" required ng-model="$ctrl.passwordConf" placeholder="password confirmation" name="passwordConf" type="password"/>
-
-        <input class="form-control" required name="date" ng-model="$ctrl.birthday" type="date"/>
-
-        <input class="form-control" required  type="text" ng-model="$ctrl.phone" ui-mask="999-999-9999"/>
-
-        <button class="btn btn-lg btn-success btn-block" id="Registrate" type="submit">Registrate</button>
-    </form>
-    <form class="panel-body"  id="loginForm" ng-submit="$ctrl.login()">
-
-        <input class="form-control"  ng-model="$ctrl.emailLogin" placeholder="Input email to login" name="emailLogin"
-            type="text" required/>
-            <input class="form-control"  ng-model="$ctrl.passwordLogin" placeholder="Input password to login" name="passwordLogin"
-            type="password" required/>
-
-        <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
-    </form>
 </div>
 <div ng-if="$ctrl.autorized">
-<h1>Welcome to the library!</h1>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Welcome to the library!</h1>
+        </div>
+    </div>
 </div>

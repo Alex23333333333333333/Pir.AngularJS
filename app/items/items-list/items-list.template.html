@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+      <!--Body content-->
+
+      <ul class="card-deck">
+        <li ng-repeat="item in $ctrl.items | filter:$ctrl.query |orderBy:$ctrl.orderProp" class="card">
+          <div class="card-body">
+            <div class="row justify-content-between">
+              <h5 class="card-title">{{item.title}}</h5>
+              <div ng-if="$ctrl.role"><button ng-click="$ctrl.delete(item.id)" class="btn  mr-2 btn-danger"><i class="fa fa-close"></i> Delete</button>
+                <a ui-sref="edit-item({itemId: item.id})" class="btn"><i class="fa fa-pencil"></i> Edit</a></div>
+              
+            </div>
+            <p class="card-text">{{item.brand}}</p>
+            <a class="btn btn-primary" ui-sref="item-details({itemId: item.id})">Learn more</a>
+          </div>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+</div>
+  

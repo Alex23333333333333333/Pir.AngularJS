@@ -4,24 +4,24 @@ angular.
   config(['$routeProvider',
     function config($routeProvider) {
       $routeProvider.
-        when('/books', {
-          template: '<book-list></book-list>'
+        when('/items', {
+          template: '<items-list></items-list>'
         }).
-        when('/books/:bookId', {
-          template: '<book-details></book-details>'
+        when('/items/:itemId', {
+          template: '<item-details></item-details>'
         }).
         when('/registration', {
           template: '<registration></registration>'
         }).
-        when('/addBook', {
-          template: '<add-book></add-book>',
+        when('/addItem', {
+          template: '<add-item></add-item>',
           authenticated: true
         }).
-        when('/editBook/:bookId', {
-          template: '<edit-book></edit-book>',
+        when('/editItem/:itemId', {
+          template: '<edit-item></edit-item>',
           authenticated: true
         }).
-        otherwise('/books');
+        otherwise('/items');
     }
   ]);
 angular.
@@ -56,24 +56,24 @@ angular.
     //
     // Теперь определим состояния
     $stateProvider
-      .state('books', {
-        url: "/books",
-        templateUrl: "books/book-list/book-list.template.html"
+      .state('items', {
+        url: "/items",
+        templateUrl: "items/items-list/items-list.template.html"
       })
-      .state('book-details', {
-        url: "/books/{bookId}",
-        templateUrl: "books/book-details/book-details.template.html"
+      .state('item-details', {
+        url: "/items/{itemId}",
+        templateUrl: "items/item-details/item-details.template.html"
       })
       .state('registration', {
         url: "/registration",
         templateUrl: "registration/registration.template.html"
       })
-      .state('add-book', {
-        url: "/addBook",
-          templateUrl: "books/book-add/book-add.template.html"
+      .state('add-item', {
+        url: "/addItem",
+          templateUrl: "items/item-add/item-add.template.html"
        })
-       .state('edit-book', {
-        url: '/editBook/{bookId}',
-          templateUrl: "books/book-edit/book-edit.template.html"
+       .state('edit-item', {
+        url: '/editItem/{itemId}',
+          templateUrl: "items/item-edit/item-edit.template.html"
        })
       });

@@ -1,9 +1,9 @@
-angular.module('libraryApp').factory('authFact',['User', 'BookList', function(User, BookList){
+angular.module('libraryApp').factory('authFact',['User', 'ItemsService', function(User, ItemsService){
     var factory={};
     factory.hasRightToEdit=function(id)
     {
      var currentUser = User.getCurrentUserId();
-    BookList.getBookDetails(id).then((book)=>{return book!=undefined&&currentUser==book.addedBy});
+    ItemsService.getItem(id).then((book)=>{return book!=undefined&&currentUser==book.addedBy});
   
 
     }

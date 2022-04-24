@@ -1,5 +1,5 @@
 angular.
-  module('core.book').
+  module('core.user').
   factory('User', ['$http','$location',
     function ($http,$location) {
       var factory = {};
@@ -14,16 +14,19 @@ angular.
         });
       }
       factory.login = function (user) {
-        var data = "grant_type=password&username=" + user.username + "&password=" + user.password;
 
-        return $http.post('https://localhost:44378/login',data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } ).then(function successCallback(response) {
-         localStorage.setItem("JWT", response.data.access_token);
-          localStorage.setItem("Id", factory.parseJWT(response.data.access_token).Id);
-
-          alert("Successfully loged in!");
-          return true;
+        return $http.post('https://localhost:44392/Users/login',JSON.stringify(user) ).then(function successCallback(response) {
+          if(response)
+          {
+            localStorage.setItem("Role", response.data.role);
+            localStorage.setItem("Id", response.data.id);
+            alert("Successfully loged in!");
+            return true;
+          }
+          return false;
+         
         }, function errorCallback(response) {
-        
+        return false;
         });
       }
       factory.parseJWT = function(token) {
@@ -41,21 +44,14 @@ angular.
       factory.getCurrentUserId = function () {
         return localStorage.getItem("Id");
       }
+      factory.userRole = function () {
+        return localStorage.getItem("Role");
+      }
 
 
       factory.logout = function() {
-        return $http({
-          method: 'GET',
-          url: 'https://localhost:44378/logout/'
-        }).then(function successCallback(response) {
-          localStorage.removeItem('JWT');
-          localStorage.removeItem('Id');
-          $location.path('/registration');
-
-          return true;
-        }, function errorCallback(response) {
-    
-        });
+    localStorage.removeItem("Id");
+    localStorage.removeItem("Role");
       }
 
       return factory;

@@ -1,0 +1,40 @@
+<div class="row justify-content-center ">
+    <div class="card" style="width:400px">
+        <div class="card-body">
+
+            <h5 class="card-title">Please input nessasery info</h5>
+
+            <form  ng-submit="$ctrl.editItem()">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input class="form-control" ng-model="title" placeholder="Input title"
+                        type="text" required />
+                </div>
+                <div class="form-group">
+                    <label>Fabric</label>
+                    <input class="form-control" ng-model="fabric" placeholder="Input fabric"
+                        type="text" required />
+                </div>
+                <div class="form-group">
+                    <label>Brand</label>
+                    <input class="form-control" ng-model="brand" placeholder="Input brand"
+                        type="text" required />
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input class="form-control" ng-model="amount" placeholder="Input amount"
+                        type="number" required />
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input class="form-control" ng-model="price" placeholder="Input price"
+                        type="text" required />
+                </div>
+
+                <button class="btn btn-success" type="submit">Edit</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
