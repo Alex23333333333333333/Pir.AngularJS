@@ -6,7 +6,11 @@ angular.
     controller: ['User', '$scope', '$interval',
       function RegistrationController(User, $scope, $interval) {
         var self = this;
-        var interval = $interval(() => { self.autorized = User.autorized(); }, 100);
+       self.autorized = function()
+       {
+         return User.autorized();
+       }
+
 
         self.registrate = function () {
           if (self.password != self.passwordConf) {
@@ -36,7 +40,7 @@ angular.
           }
           document.getElementById("loginForm").reset();
           User.login(loginModel).then(data => {
-            if (data == true) self.autorized = true;
+          
           })
         }
       }

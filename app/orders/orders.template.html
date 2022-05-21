@@ -1,0 +1,37 @@
+<div ng-if="$ctrl.pending" class="overlay">
+  <div class="d-flex justify-content-center">  
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+
+      <!--Body content-->
+
+      <ul class="row justify-content-between">
+        <div ng-repeat="order in $ctrl.orders | filter:$ctrl.query |orderBy:$ctrl.orderProp" class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+            <div class="row justify-content-between">
+              <h5 class="card-title">{{order.id}}. {{order.itemInfo.title}}</h5>
+              <div ng-if="$ctrl.role"><button ng-click="$ctrl.cancel(order)" class="btn  mr-2 btn-danger"><i
+                    class="fa fa-close"></i> Mark cancelled</button>
+                <a ng-click="$ctrl.changeStatus(order)" ng-if="order.status == 2" class="btn btn-success"><i class="fa fa-fire "></i> Mark completed</a>
+                <a ng-click="$ctrl.changeStatus(order)" ng-if="order.status == 1" class="btn btn-primary"><i class="fa fa-fire "></i> Start progress</a>
+              </div>
+            </div>
+            <p class="card-text">Available amount:{{order.itemInfo.amount}}</p>
+            <p class="card-text">Ordered amount:{{order.amount}}</p>
+            <p class="card-text">First name: {{order.customerInfo.firstName}}</p>
+            <p class="card-text">Last name: {{order.customerInfo.secondName}}</p>
+            <p class="card-text">Contact: {{order.customerInfo.phoneNumber}}</p>
+
+          </div>
+          </div>
+        </div>
+      </ul>
+
+
+   
+</div>

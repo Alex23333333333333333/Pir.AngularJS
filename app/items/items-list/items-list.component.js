@@ -7,12 +7,12 @@ angular.module('booksApp').
       this.role = User.userRole();
       var self = this;
       this.delete = function (id) {
-      ItemsService.delete(id);
+        self.pending = true;
+      ItemsService.delete(id).then(()=>{self.pending = false;});
       }
-  
-
+      self.pending = true;
       ItemsService.getItems().then(
-        (data) => { self.items = data; }
+        (data) => { self.items = data; self.pending = false; }
       );
     }]
   })

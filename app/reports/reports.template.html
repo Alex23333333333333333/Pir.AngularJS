@@ -1,0 +1,138 @@
+<div class="container-fluid">
+  <div ng-if="$ctrl.pending" class="overlay">
+    <div class="d-flex justify-content-center">  
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <!--Body content-->
+  <div class="row">
+    <div class="col-lg-6 card">
+      <div class="card-body">
+        <p>
+        <form class="form-inline" ng-submit="$ctrl.ReportOrder()"><button type="submit" class="btn btn-big mr-3"> Report
+            for order:</button>
+          <input type="number" required ng-model="$ctrl.orderId" />
+        </form>
+        </p>
+        <p>
+        <form class="form-inline" ng-submit="$ctrl.ReportCustomer()"><button type="submit" class="btn btn-big mr-3">
+            Report for customer:</button>
+          <input type="text" required ng-model="$ctrl.customerNumber" placeholder="Phone number" />
+        </form>
+        </p>
+        <p>
+        <form class="form-inline" ng-submit="$ctrl.ReportOrders()"><button type="submit" class="btn btn-big mr-3">
+            Orders Report in interval</button>
+          <input type="date" class="mr-3" required ng-model="$ctrl.startDate" />
+          <input type="date" required ng-model="$ctrl.finalDate" />
+        </form>
+        </p>
+        <p>
+          <form class="form-inline" ng-submit="$ctrl.Logs()"><button type="submit" class="btn btn-big mr-3">
+              Activity logs: </button>
+          </form>
+          </p>
+      </div>
+
+    </div>
+    <div ng-if="$ctrl.orderOpen" class="col-lg-6">
+      <li class="card">
+        <div class="card-body">
+          <div class="row justify-content-between">
+            <h5 class="card-title">{{$ctrl.order.id}}. {{$ctrl.order.itemInfo.title}}</h5>
+            <div ng-if="$ctrl.role"><button ng-click="$ctrl.cancel(order)" class="btn  mr-2 btn-danger"><i
+                  class="fa fa-close"></i> Mark cancelled</button>
+              <a ng-click="$ctrl.changeStatus(order)" ng-if="order.status == 2" class="btn btn-success"><i
+                  class="fa fa-fire "></i> Mark completed</a>
+              <a ng-click="$ctrl.changeStatus(order)" ng-if="order.status == 1" class="btn btn-primary"><i
+                  class="fa fa-fire "></i> Start progress</a>
+            </div>
+          </div>
+          <p class="card-text">Available amount:{{$ctrl.order.itemInfo.amount}}</p>
+          <p class="card-text">Ordered amount:{{$ctrl.order.amount}}</p>
+          <p class="card-text">First name: {{$ctrl.order.customerInfo.firstName}}</p>
+          <p class="card-text">Last name: {{$ctrl.order.customerInfo.secondName}}</p>
+          <p class="card-text">Contact: {{$ctrl.order.customerInfo.phoneNumber}}</p>
+
+        </div>
+      </li>
+    </div>
+    <div ng-if="$ctrl.logsOpen" class="col-lg-6">
+      <li class="card">
+        <div class="card-body">
+      <table class="table">
+        <tr>
+          <th>Type</th>
+          <th>User</th>
+          <th>Notes</th>
+          <th>Time</th>
+        </tr>
+        <tr ng-repeat="log in $ctrl.logs">
+          <td ng-if="log.type==2"> Add user</td>
+          <td ng-if="log.type==1">Login</td>
+          <td ng-if="log.type==3">Cancel order</td>
+          <td ng-if="log.user">  {{log.user}}</td>
+          <td ng-if="!log.user"> -</td>
+          <td>{{log.notes}}</td>
+          <td>{{log.time}}</td>
+        </tr>
+      </table>
+     
+      </li>
+    </div>
+    <div ng-if="$ctrl.customerOpen" class="col-lg-6">
+      <li class="card">
+        <div class="card-body">
+          <div class="bold">{{$ctrl.customer.firstName}} {{$ctrl.customer.secondName}}</div>
+          <table class="table">
+            <tr>
+              <th>Order #</th>
+              <th>Item</th>
+              <th>Amount</th>
+              <th>State</th>
+            </tr>
+            <tr ng-repeat="order in $ctrl.customerOrders">
+              <td>{{order.id}}</td>
+              <td>{{order.item}}</td>
+              <td>{{order.amount}}</td>
+              <td class="bg-warning" ng-if="order.status==1">Not processed</td>
+              <td class="bg-info" ng-if="order.status==2">In progress</td>
+              <td class="bg-success" ng-if="order.status==3">Completed</td>
+              <td class="bg-danger" ng-if="order.status==4">Cancelled</td>
+
+            </tr>
+            <tr>
+              <td>Totals: {{$ctrl.Sum}}</td>
+            </tr>
+
+          </table>
+
+        </div>
+      </li>
+    </div>
+    <div ng-if="$ctrl.ordersOpen" class="col-lg-6">
+      <li class="card">
+        <div class="card-body">
+          <div class="row justify-content-between">
+            <div class="col-lg-2">Order id</div>
+            <div class="col-lg-2">Customer</div>
+            <div class="col-lg-2">Amount</div>
+            <div class="col-lg-2">Item</div>
+            <div class="col-lg-2">Status</div>
+            <div class="col-lg-2">Date</div>
+          </div>
+          <div ng-repeat="order in $ctrl.orderRep" class="row justify-content-between">
+            <div class="col-lg-2">{{order.id}}</div>
+            <div class="col-lg-2">{{order.customer}}</div>
+            <div class="col-lg-2">{{order.amount}}</div>
+            <div class="col-lg-2">{{order.item}}</div>
+            <div class="col-lg-2">{{order.status}}</div>
+            <div class="col-lg-2">{{order.date}}</div>
+          </div>
+      </li>
+    </div>
+  </div>
+</div>
+</div>

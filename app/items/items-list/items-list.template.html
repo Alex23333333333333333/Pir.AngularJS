@@ -1,10 +1,15 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-10">
-      <!--Body content-->
 
-      <ul class="card-deck">
-        <li ng-repeat="item in $ctrl.items | filter:$ctrl.query |orderBy:$ctrl.orderProp" class="card">
+      <!--Body content-->
+      <div ng-if="$ctrl.pending" class="overlay">
+        <div class="d-flex justify-content-center">  
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <ul class="row justify-content-between">
+        <div ng-repeat="item in $ctrl.items | filter:$ctrl.query |orderBy:$ctrl.orderProp" class="col-lg-4">
+          <div class="card">
           <div class="card-body">
             <div class="row justify-content-between">
               <h5 class="card-title">{{item.title}}</h5>
@@ -15,11 +20,11 @@
             <p class="card-text">{{item.brand}}</p>
             <a class="btn btn-primary" ui-sref="item-details({itemId: item.id})">Learn more</a>
           </div>
-        </li>
+        </div>
+      </div>
       </ul>
 
 
-    </div>
-  </div>
 </div>
-  
+
+

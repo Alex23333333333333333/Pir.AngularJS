@@ -35,6 +35,17 @@ angular.
           }
         });
       }
+      factory.printReport = function (order) {
+        var url = 'https://localhost:44392/Items/printReport';
+        return $http.put(url, JSON.stringify(order)).then(function successCallback(response) {
+
+          alert("Report is successfully saved");
+        }, function errorCallback(response) {
+          {
+            
+          }
+        });
+      }
 
 
 

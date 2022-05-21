@@ -6,6 +6,17 @@ angular.
       $routeProvider.
         when('/items', {
           template: '<items-list></items-list>'
+        })
+        .when('/orders', {
+          template: '<orders></orders>',
+          authenticated: true
+        }) .when('/reports', {
+          template: '<reports></reports>',
+          authenticated: true
+        }).
+        when('/users', {
+          template: '<users></users>',
+          authenticated: true
         }).
         when('/items/:itemId', {
           template: '<item-details></item-details>'
@@ -59,6 +70,18 @@ angular.
       .state('items', {
         url: "/items",
         templateUrl: "items/items-list/items-list.template.html"
+      })
+      .state('orders', {
+        url: "/orders",
+        templateUrl: "orders/orders.template.html"
+      })
+      .state('users', {
+        url: "/users",
+        templateUrl: "users/users.template.html"
+      })
+      .state('reports', {
+        url: "/reports",
+        templateUrl: "reports/reports.template.html"
       })
       .state('item-details', {
         url: "/items/{itemId}",
